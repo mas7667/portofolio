@@ -1,0 +1,94 @@
+import React from 'react';
+import { SKILLS } from '../constants';
+import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { Server, Terminal, Database, Code2 } from 'lucide-react';
+
+const Skills: React.FC = () => {
+  // Data for chart - giving arbitrary values to visualize balance
+  const chartData = [
+    { subject: 'Dev Backend', A: 85, fullMark: 100 },
+    { subject: 'Dev Frontend', A: 75, fullMark: 100 },
+    { subject: 'DevOps/Cloud', A: 80, fullMark: 100 },
+    { subject: 'Réseaux', A: 90, fullMark: 100 },
+    { subject: 'Sécurité', A: 70, fullMark: 100 },
+    { subject: 'Mobile', A: 65, fullMark: 100 },
+  ];
+
+  const getIcon = (category: string) => {
+    if (category.includes('Infrastructure')) return <Server className="text-purple-500" />;
+    if (category.includes('Développement')) return <Code2 className="text-blue-500" />;
+    if (category.includes('Données')) return <Database className="text-emerald-500" />;
+    return <Terminal className="text-orange-500" />;
+  };
+
+  return (
+    <div className="min-h-screen py-12 px-6 md:px-16 max-w-6xl mx-auto">
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold text-slate-900 mb-2">Compétences Techniques</h2>
+        <p className="text-slate-500">Une expertise polyvalente entre le développement logiciel et l'infrastructure.</p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* Radar Chart Section */}
+        <div className="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center min-h-[400px]">
+          <h3 className="text-lg font-semibold text-slate-800 mb-4">Vue d'ensemble</h3>
+          <div className="w-full h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={chartData}>
+                <PolarGrid stroke="#e2e8f0" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: '#64748b', fontSize: 12 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                <Radar
+                  name="Niveau"
+                  dataKey="A"
+                  stroke="#2563eb"
+                  fill="#3b82f6"
+                  fillOpacity={0.6}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {SKILLS.map((skillGroup) => (
+            <div key={skillGroup.category} className="bg-white p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-slate-50 rounded-lg">
+                  {getIcon(skillGroup.category)}
+                </div>
+                <h3 className="font-semibold text-slate-800">{skillGroup.category}</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {skillGroup.items.map((item) => (
+                  <span 
+                    key={item} 
+                    className="px-3 py-1 text-sm bg-slate-50 text-slate-600 rounded-md border border-slate-100 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-100 transition-colors cursor-default"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Soft Skills Section */}
+      <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white">
+        <h3 className="text-xl font-bold mb-6">Compétences Personnelles (Soft Skills)</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {['Gestion de projets', 'Agile/Scrum', 'Collaboration', 'Proactivité', 'Autonomie', 'Curiosité'].map((s) => (
+            <div key={s} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-center text-sm font-medium hover:bg-white/20 transition">
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Skills;
