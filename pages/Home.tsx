@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Github, FolderGit2, ServerCog, Smartphone } from 'lucide-react';
+import { ArrowRight, Github, Mail, FolderGit2, ServerCog, Smartphone } from 'lucide-react';
 import { PERSONAL_INFO } from '../constants';
 import { Link } from 'react-router-dom';
 
@@ -32,12 +32,10 @@ const Home: React.FC = () => {
             Explorer mes projets <ArrowRight size={18} />
           </Link>
           <a
-            href={PERSONAL_INFO.github}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${PERSONAL_INFO.email}?subject=Prise%20de%20contact%20-%20Portfolio`}
             className="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition flex items-center gap-2"
           >
-            Voir mon GitHub <Github size={18} />
+            Me contacter <Mail size={18} />
           </a>
         </div>
 
