@@ -3,6 +3,7 @@ import { Experience, Education, Skill, Project } from './types';
 export const PERSONAL_INFO = {
   name: "Fily Sara Keita",
   title: "Technicien informatique · Développeur logiciel",
+  email: "fily.sara.keita@gmail.com",
   github: "https://github.com/mas7667",
   summary: "Diplômé en Techniques de l’informatique, je conçois des applications web et mobiles et je déploie des services conteneurisés. Mon expérience couvre le développement, le soutien TI, les réseaux et l’automatisation. Je privilégie les solutions simples à maintenir, sécurisées et testables.",
   languages: ["Français (Natif)", "Anglais (Intermédiaire)"]
@@ -120,7 +121,7 @@ export const PROJECTS: Project[] = [
     category: "Web",
     status: "Déployé",
     repository: "https://github.com/mas7667/pneus-express",
-    liveUrl: "https://pneus-express-o57qpt3gs-filysarakeita-8626s-projects.vercel.app",
+    liveUrl: "https://pneus-express.vercel.app",
     featured: true
   },
   {
@@ -131,7 +132,7 @@ export const PROJECTS: Project[] = [
     category: "Web",
     status: "Déployé",
     repository: "https://github.com/mas7667/Hotel",
-    liveUrl: "https://hotel-dtk9x77tc-filysarakeita-8626s-projects.vercel.app",
+    liveUrl: "https://hotel-five-smoky.vercel.app",
     featured: true
   },
   {
