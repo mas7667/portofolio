@@ -6,7 +6,6 @@ import Experience from './pages/Experience';
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Education from './pages/Education';
-import AIChatWidget from './components/AIChatWidget';
 import { Github, Mail } from 'lucide-react';
 import { PERSONAL_INFO } from './constants';
 
@@ -61,7 +60,6 @@ function App() {
           </Routes>
         </main>
 
-        <AIChatWidget />
       </div>
     </HashRouter>
   );
