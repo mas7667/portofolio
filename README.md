@@ -1,6 +1,6 @@
 # Portfolio — Fily Sara Keita
 
-Portfolio professionnel présentant le parcours, les compétences et les dix dépôts GitHub de Fily Sara Keita.
+Portfolio professionnel présentant le parcours, les compétences et huit projets sélectionnés de Fily Sara Keita.
 
 ## Stack
 
