@@ -19,7 +19,7 @@ const Projects: React.FC = () => {
       <div className="mb-12">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 mb-3">Réalisations vérifiées</p>
         <h2 className="text-3xl font-bold text-slate-900 mb-2">Projets et dépôts</h2>
-        <p className="text-slate-500">Les dix dépôts GitHub sont présentés avec leur état réel et leur stack principale.</p>
+        <p className="text-slate-500">Huit projets sélectionnés sont présentés avec leur état réel et leur stack principale.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
