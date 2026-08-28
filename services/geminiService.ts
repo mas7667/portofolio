@@ -4,7 +4,7 @@ export const getPortfolioAnswer = (message: string): string => {
   const query = message.toLocaleLowerCase('fr');
 
   if (/contact|courriel|email|téléphone/.test(query)) {
-    return `Vous pouvez consulter le profil GitHub de Fily : ${PERSONAL_INFO.github}.`;
+    return `Vous pouvez joindre Fily à ${PERSONAL_INFO.email} ou consulter son profil GitHub : ${PERSONAL_INFO.github}.`;
   }
   if (/projet|github|réalisation|application/.test(query)) {
     const featured = PROJECTS.filter((project) => project.featured).map((project) => project.title).join(', ');
