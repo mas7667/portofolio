@@ -18,7 +18,7 @@ const Navigation: React.FC = () => {
       <aside className="hidden md:flex flex-col w-64 h-screen fixed left-0 top-0 bg-white border-r border-slate-200 z-40">
         <div className="p-8">
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Fily S. Keita</h1>
-          <p className="text-sm text-slate-500 mt-1">Analyste Programmeur</p>
+          <p className="text-sm text-slate-500 mt-1">Technicien informatique</p>
         </div>
         
         <nav className="flex-1 px-4 space-y-2">
@@ -51,7 +51,7 @@ const Navigation: React.FC = () => {
       </aside>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 z-40 px-6 py-3 flex justify-between items-center shadow-lg safe-area-bottom">
+      <nav aria-label="Navigation mobile" className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 z-40 px-2 py-2 flex justify-around items-center shadow-lg safe-area-bottom">
         {navItems.map((item) => (
           <NavLink
             key={item.path}

@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Portfolio — Fily Sara Keita
 
-# Run and deploy your AI Studio app
+Portfolio professionnel présentant le parcours, les compétences et les dix dépôts GitHub de Fily Sara Keita.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/drive/1cBQ6HlOgLuG_XlPb8g2Pesaqjj6xd-fd
+- React 19 et TypeScript 5.8
+- Vite 6
+- Tailwind CSS 4 compilé avec le plugin Vite
+- React Router 7
+- Lucide React
 
-## Run Locally
+L’assistant intégré est local et déterministe : aucune clé d’API n’est embarquée dans le navigateur et aucune question n’est envoyée à un service tiers.
 
-**Prerequisites:**  Node.js
+## Développement
 
+```bash
+npm ci
+npm run typecheck
+npm run build
+npm run dev
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Structure
+
+- `constants.ts` : contenu vérifié du portfolio
+- `pages/` : parcours, projets, compétences, formation et contact
+- `components/` : navigation et guide interactif
+- `services/` : réponses locales du guide

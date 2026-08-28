@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, Github, FolderGit2, ServerCog, Smartphone } from 'lucide-react';
 import { PERSONAL_INFO } from '../constants';
 import { Link } from 'react-router-dom';
 
@@ -19,24 +19,36 @@ const Home: React.FC = () => {
           Bonjour, je suis <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">{PERSONAL_INFO.name}</span>.
         </h1>
         
-        <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl">
-          {PERSONAL_INFO.title}. Je crée des solutions stables et sécurisées en alliant programmation et gestion d'infrastructure.
+        <p className="text-xl md:text-2xl text-slate-500 font-light max-w-3xl">
+          {PERSONAL_INFO.title}. Applications web et mobiles, soutien TI, réseaux et automatisation.
         </p>
 
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-4 pt-4">
           <Link 
-            to="/experience"
+            to="/projects"
             className="px-6 py-3 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition flex items-center gap-2"
           >
-            Voir mon parcours <ArrowRight size={18} />
+            Explorer mes projets <ArrowRight size={18} />
           </Link>
-          <a 
-            href={`mailto:${PERSONAL_INFO.email}`}
+          <a
+            href={PERSONAL_INFO.github}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition flex items-center gap-2"
           >
-            Me contacter <Mail size={18} />
+            Voir mon GitHub <Github size={18} />
           </a>
+        </div>
+
+        <div className="grid gap-4 pt-8 sm:grid-cols-3">
+          {[{ icon: FolderGit2, value: '8', label: 'projets présentés' }, { icon: ServerCog, value: '3', label: 'projets déployés' }, { icon: Smartphone, value: 'Web + mobile', label: 'produits réalisés' }].map((item) => (
+            <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <item.icon size={20} className="mb-4 text-blue-600" />
+              <p className="text-xl font-bold text-slate-900">{item.value}</p>
+              <p className="text-sm text-slate-500">{item.label}</p>
+            </div>
+          ))}
         </div>
 
         {/* Summary Card */}
@@ -57,8 +69,7 @@ const Home: React.FC = () => {
 
         {/* Social Links */}
         <div className="flex gap-6 text-slate-400 mt-8">
-           <a href="#" className="hover:text-blue-600 transition"><Linkedin size={24} /></a>
-           <a href="#" className="hover:text-slate-900 transition"><Github size={24} /></a>
+           <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" className="hover:text-slate-900 transition"><Github size={24} /></a>
         </div>
       </div>
     </div>

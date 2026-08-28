@@ -1,13 +1,15 @@
 import React from 'react';
 import { PROJECTS } from '../constants';
-import { ExternalLink, Code2, Cpu, Server } from 'lucide-react';
+import { ExternalLink, Code2, Smartphone, Server, GitBranch, FlaskConical, Github } from 'lucide-react';
 
 const Projects: React.FC = () => {
   const getIcon = (category: string) => {
     switch (category) {
-      case 'Dev': return <Code2 className="text-blue-500" size={20} />;
-      case 'IoT': return <Cpu className="text-orange-500" size={20} />;
-      case 'Infra': return <Server className="text-purple-500" size={20} />;
+      case 'Web': return <Code2 className="text-blue-500" size={20} />;
+      case 'Mobile': return <Smartphone className="text-emerald-500" size={20} />;
+      case 'Backend': return <Server className="text-violet-500" size={20} />;
+      case 'DevOps': return <GitBranch className="text-orange-500" size={20} />;
+      case 'Prototype': return <FlaskConical className="text-slate-500" size={20} />;
       default: return <Code2 className="text-slate-500" size={20} />;
     }
   };
@@ -15,8 +17,9 @@ const Projects: React.FC = () => {
   return (
     <div className="min-h-screen py-12 px-6 md:px-16 max-w-6xl mx-auto">
       <div className="mb-12">
-        <h2 className="text-3xl font-bold text-slate-900 mb-2">Projets Réalisés</h2>
-        <p className="text-slate-500">Une sélection de projets académiques et professionnels démontrant mes compétences techniques.</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 mb-3">Réalisations vérifiées</p>
+        <h2 className="text-3xl font-bold text-slate-900 mb-2">Projets et dépôts</h2>
+        <p className="text-slate-500">Les dix dépôts GitHub sont présentés avec leur état réel et leur stack principale.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -36,16 +39,7 @@ const Projects: React.FC = () => {
                     {project.title}
                   </h3>
                 </div>
-                {project.link && (
-                  <a 
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-blue-600 transition"
-                  >
-                    <ExternalLink size={20} />
-                  </a>
-                )}
+                <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${project.status === 'Déployé' ? 'bg-emerald-50 text-emerald-700' : project.status === 'Prototype' ? 'bg-amber-50 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>{project.status}</span>
               </div>
 
               <p className="text-slate-600 mb-6 flex-1 leading-relaxed">
@@ -64,6 +58,16 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3 border-t border-slate-100 pt-5">
+                <a href={project.repository} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-blue-600">
+                  <Github size={17} /> Code source
+                </a>
+                {project.liveUrl && (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800">
+                    <ExternalLink size={17} /> Démonstration
+                  </a>
+                )}
               </div>
             </div>
             
