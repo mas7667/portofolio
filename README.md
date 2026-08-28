@@ -10,8 +10,6 @@ Portfolio professionnel présentant le parcours, les compétences et huit projet
 - React Router 7
 - Lucide React
 
-L’assistant intégré est local et déterministe : aucune clé d’API n’est embarquée dans le navigateur et aucune question n’est envoyée à un service tiers.
-
 ## Développement
 
 ```bash
