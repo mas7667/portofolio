@@ -7,7 +7,7 @@ import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Education from './pages/Education';
 import AIChatWidget from './components/AIChatWidget';
-import { Github } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 import { PERSONAL_INFO } from './constants';
 
 // Simple Contact Component (inline for simplicity)
@@ -20,6 +20,10 @@ const Contact = () => (
           Je suis actuellement à la recherche de nouveaux défis. N'hésitez pas à me contacter pour discuter de votre projet ou d'une opportunité.
         </p>
         <div className="flex flex-col gap-4">
+          <a href={`mailto:${PERSONAL_INFO.email}?subject=Prise%20de%20contact%20-%20Portfolio`} className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+            <Mail className="text-blue-500" />
+            <span className="font-medium">{PERSONAL_INFO.email}</span>
+          </a>
           <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition p-4 bg-white rounded-xl shadow-sm border border-slate-100">
             <Github className="text-slate-900" />
             <span className="font-medium">github.com/mas7667</span>
@@ -29,9 +33,9 @@ const Contact = () => (
       <div className="rounded-2xl bg-slate-900 p-8 text-white shadow-xl">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Échangeons</p>
         <h3 className="mt-3 text-2xl font-bold">Une opportunité ou un projet TI?</h3>
-        <p className="mt-4 text-slate-300">Consultez mon profil GitHub pour découvrir mes dépôts, mon activité et ouvrir un échange professionnel.</p>
-        <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-lg bg-blue-500 px-5 py-3 font-semibold hover:bg-blue-400">
-          <Github size={18} /> Accéder à GitHub
+        <p className="mt-4 text-slate-300">Envoyez-moi un courriel pour discuter d’une opportunité, d’un mandat ou d’un projet TI.</p>
+        <a href={`mailto:${PERSONAL_INFO.email}?subject=Prise%20de%20contact%20-%20Portfolio`} className="mt-8 inline-flex items-center gap-2 rounded-lg bg-blue-500 px-5 py-3 font-semibold hover:bg-blue-400">
+          <Mail size={18} /> Écrire un courriel
         </a>
       </div>
     </div>
