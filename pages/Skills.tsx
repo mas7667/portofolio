@@ -1,19 +1,8 @@
 import React from 'react';
 import { SKILLS } from '../constants';
-import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
-import { Server, Terminal, Database, Code2 } from 'lucide-react';
+import { Server, Terminal, Database, Code2, CheckCircle2 } from 'lucide-react';
 
 const Skills: React.FC = () => {
-  // Data for chart - giving arbitrary values to visualize balance
-  const chartData = [
-    { subject: 'Dev Backend', A: 85, fullMark: 100 },
-    { subject: 'Dev Frontend', A: 75, fullMark: 100 },
-    { subject: 'DevOps/Cloud', A: 80, fullMark: 100 },
-    { subject: 'Réseaux', A: 90, fullMark: 100 },
-    { subject: 'Sécurité', A: 70, fullMark: 100 },
-    { subject: 'Mobile', A: 65, fullMark: 100 },
-  ];
-
   const getIcon = (category: string) => {
     if (category.includes('Infrastructure')) return <Server className="text-purple-500" />;
     if (category.includes('Développement')) return <Code2 className="text-blue-500" />;
@@ -28,31 +17,7 @@ const Skills: React.FC = () => {
         <p className="text-slate-500">Une expertise polyvalente entre le développement logiciel et l'infrastructure.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Radar Chart Section */}
-        <div className="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center min-h-[400px]">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Vue d'ensemble</h3>
-          <div className="w-full h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={chartData}>
-                <PolarGrid stroke="#e2e8f0" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: '#64748b', fontSize: 12 }} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                <Radar
-                  name="Niveau"
-                  dataKey="A"
-                  stroke="#2563eb"
-                  fill="#3b82f6"
-                  fillOpacity={0.6}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Skills Grid */}
-        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {SKILLS.map((skillGroup) => (
             <div key={skillGroup.category} className="bg-white p-6 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-4">
@@ -73,7 +38,11 @@ const Skills: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
+      </div>
+
+      <div className="mt-8 flex items-start gap-3 rounded-2xl border border-blue-100 bg-blue-50 p-5 text-sm text-blue-900">
+        <CheckCircle2 className="mt-0.5 shrink-0" size={20} />
+        <p>Ces technologies proviennent du code et des configurations présents dans les dépôts. Aucun pourcentage de maîtrise arbitraire n’est affiché.</p>
       </div>
 
       {/* Soft Skills Section */}

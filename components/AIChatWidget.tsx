@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User, Minimize2 } from 'lucide-react';
-import { sendMessageToGemini } from '../services/geminiService';
+import { MessageSquare, X, Send, Bot, Minimize2 } from 'lucide-react';
+import { getPortfolioAnswer } from '../services/geminiService';
 import { ChatMessage } from '../types';
 
 const AIChatWidget: React.FC = () => {
@@ -9,7 +9,6 @@ const AIChatWidget: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     { id: '0', role: 'model', text: "Bonjour! Je suis l'assistant IA de Fily. Posez-moi des questions sur mon expérience, mes compétences ou mes projets." }
   ]);
-  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -21,22 +20,14 @@ const AIChatWidget: React.FC = () => {
   }, [messages, isOpen]);
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim()) return;
 
     const userMsg: ChatMessage = { id: Date.now().toString(), role: 'user', text: input };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
-    setIsLoading(true);
-
-    try {
-      const responseText = await sendMessageToGemini(userMsg.text);
-      const botMsg: ChatMessage = { id: (Date.now() + 1).toString(), role: 'model', text: responseText };
-      setMessages(prev => [...prev, botMsg]);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+    const responseText = getPortfolioAnswer(userMsg.text);
+    const botMsg: ChatMessage = { id: (Date.now() + 1).toString(), role: 'model', text: responseText };
+    setMessages(prev => [...prev, botMsg]);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -56,7 +47,7 @@ const AIChatWidget: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-sm">Assistant Virtuel</h3>
-                <p className="text-xs text-blue-100">Propulsé par Gemini</p>
+                <p className="text-xs text-blue-100">Guide du portfolio · privé</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded transition">
@@ -77,15 +68,6 @@ const AIChatWidget: React.FC = () => {
                 </div>
               </div>
             ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-none p-3 flex gap-1 items-center">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                </div>
-              </div>
-            )}
             <div ref={messagesEndRef} />
           </div>
 
@@ -101,7 +83,7 @@ const AIChatWidget: React.FC = () => {
             />
             <button 
               onClick={handleSend}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim()}
               className="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={18} />

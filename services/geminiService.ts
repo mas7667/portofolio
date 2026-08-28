@@ -1,33 +1,20 @@
-import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
-import { SYSTEM_INSTRUCTION } from '../constants';
+import { EXPERIENCES, PERSONAL_INFO, PROJECTS, SKILLS } from '../constants';
 
-// Initialize Gemini Client
-// Note: In a real production app, ensure API_KEY is set in environment variables.
-// For this demo, we assume process.env.API_KEY is available.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+export const getPortfolioAnswer = (message: string): string => {
+  const query = message.toLocaleLowerCase('fr');
 
-let chatSession: Chat | null = null;
-
-export const getChatSession = (): Chat => {
-  if (!chatSession) {
-    chatSession = ai.chats.create({
-      model: 'gemini-3-flash-preview',
-      config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
-        temperature: 0.7,
-      },
-    });
+  if (/contact|courriel|email|téléphone/.test(query)) {
+    return `Vous pouvez consulter le profil GitHub de Fily : ${PERSONAL_INFO.github}.`;
   }
-  return chatSession;
-};
-
-export const sendMessageToGemini = async (message: string): Promise<string> => {
-  try {
-    const chat = getChatSession();
-    const result: GenerateContentResponse = await chat.sendMessage({ message });
-    return result.text || "Je m'excuse, je n'ai pas pu traiter votre demande pour le moment.";
-  } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "Une erreur s'est produite lors de la connexion à mes services d'IA. Veuillez réessayer plus tard.";
+  if (/projet|github|réalisation|application/.test(query)) {
+    const featured = PROJECTS.filter((project) => project.featured).map((project) => project.title).join(', ');
+    return `Les projets principaux sont ${featured}. La page Projets présente les ${PROJECTS.length} dépôts vérifiés.`;
   }
+  if (/compétence|stack|technologie|langage/.test(query)) {
+    return `Les compétences couvrent ${SKILLS.map((group) => group.category).join(', ')}. Consultez la page Compétences pour le détail.`;
+  }
+  if (/expérience|alstom|emploi|stage/.test(query)) {
+    return `Le parcours comprend ${EXPERIENCES.map((experience) => `${experience.role} chez ${experience.company}`).join(', ')}.`;
+  }
+  return "Je peux vous orienter vers les projets, les compétences, l’expérience ou les coordonnées de Fily. Cette aide fonctionne localement et ne transmet aucune donnée à un service externe.";
 };

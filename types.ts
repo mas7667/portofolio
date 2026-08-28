@@ -23,8 +23,11 @@ export interface Project {
   title: string;
   description: string;
   technologies: string[];
-  category: 'Dev' | 'Infra' | 'IoT';
-  link?: string;
+  category: 'Web' | 'Mobile' | 'Backend' | 'DevOps' | 'Prototype';
+  status: 'Déployé' | 'Fonctionnel' | 'Prototype' | 'Infrastructure';
+  repository: string;
+  liveUrl?: string;
+  featured?: boolean;
 }
 
 export interface ChatMessage {
