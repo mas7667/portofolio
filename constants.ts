@@ -11,6 +11,17 @@ export const PERSONAL_INFO = {
 
 export const EXPERIENCES: Experience[] = [
   {
+    id: "4",
+    role: "Analyste-programmeur (stage)",
+    company: "Garant",
+    period: "03/2026 - 05/2026",
+    description: [
+      "Migration d’applications de Vue 2 vers Vue 3 et intégration d’API.",
+      "Migration de données JSON vers des bases relationnelles et non relationnelles, puis transfert d’applications vers de nouveaux serveurs.",
+      "Automatisation des déploiements au moyen de pipelines CI/CD."
+    ]
+  },
+  {
     id: "1",
     role: "Stagiaire TI",
     company: "Alstom Transport Canada Inc",
